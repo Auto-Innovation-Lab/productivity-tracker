@@ -1,0 +1,7 @@
+.env
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+*.token
+.DS_Store
+Thumbs.db

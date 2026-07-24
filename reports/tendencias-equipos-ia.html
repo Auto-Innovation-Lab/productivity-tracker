@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestro Equipo · Modelo AI-Native 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:      #0a0e14;
+    --surface: #111720;
+    --border:  #1e2a38;
+    --accent:  #00d4ff;
+    --green:   #00e5a0;
+    --amber:   #ffb800;
+    --text:    #e2eaf5;
+    --muted:   #5a7080;
+    --mono:    'IBM Plex Mono', monospace;
+    --sans:    'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 32px 20px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 22px; font-weight: 600; color: #fff; line-height: 1.25; margin-bottom: 6px; }
+  .subtitle { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+  .sources { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .source-tag {
+    font-family: var(--mono); font-size: 9px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 3px; padding: 2px 7px;
+  }
+
+  .section-label {
+    font-family: var(--mono); font-size: 9px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 12px; margin-top: 28px;
+  }
+
+  /* Stats */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 12px; }
+  .stat-num { font-family: var(--mono); font-size: 22px; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: 5px; }
+  .stat-num.green { color: var(--green); }
+  .stat-num.amber { color: var(--amber); }
+  .stat-label { font-size: 11px; color: var(--muted); }
+  .stat-source { font-family: var(--mono); font-size: 9px; color: #2a3a50; margin-top: 4px; }
+
+  /* Trend cards */
+  .trends-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .trend-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px; position: relative; overflow: hidden;
+  }
+  .trend-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--accent);
+  }
+  .trend-card.green::before { background: var(--green); }
+  .trend-card.amber::before { background: var(--amber); }
+  .trend-n { font-family: var(--mono); font-size: 9px; color: var(--muted); margin-bottom: 6px; }
+  .trend-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .trend-body { font-size: 11px; color: #8a9eb5; line-height: 1.55; }
+  .trend-tag {
+    display: inline-block; margin-top: 8px; font-family: var(--mono); font-size: 9px;
+    padding: 2px 7px; border-radius: 3px;
+    background: rgba(0,212,255,0.08); color: var(--accent); border: 1px solid rgba(0,212,255,0.15);
+  }
+  .trend-tag.green { background: rgba(0,229,160,0.08); color: var(--green); border-color: rgba(0,229,160,0.15); }
+  .trend-tag.amber { background: rgba(255,184,0,0.08); color: var(--amber); border-color: rgba(255,184,0,0.15); }
+
+  /* Match table */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .compare-table th {
+    font-family: var(--mono); font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted); text-align: left;
+    padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg);
+  }
+  .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: #8a9eb5; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td:first-child { color: var(--green); font-weight: 600; }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .check { color: var(--green); font-weight: 700; }
+
+  /* Pod cards */
+  .pod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .pod-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; position: relative; overflow: hidden;
+  }
+  .pod-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--accent), var(--green));
+  }
+  .pod-card.javier::after { background: linear-gradient(90deg, #a78bfa, #00d4ff); }
+  .pod-card.henrique::after { background: linear-gradient(90deg, #00d4ff, #00e5a0); }
+  .pod-card.guilherme::after { background: linear-gradient(90deg, #00e5a0, #ffb800); }
+
+  .pod-name { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .pod-title { font-family: var(--mono); font-size: 10px; color: var(--accent); margin-bottom: 14px; }
+  .pod-card.javier .pod-title { color: #a78bfa; }
+  .pod-card.henrique .pod-title { color: var(--accent); }
+  .pod-card.guilherme .pod-title { color: var(--green); }
+
+  .pod-section { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 10px 0 5px; }
+  .pod-item { font-size: 11px; color: #8a9eb5; padding: 3px 0; border-bottom: 1px solid #151e2a; line-height: 1.4; }
+  .pod-item:last-child { border-bottom: none; }
+  .pod-item::before { content: '→ '; color: var(--muted); font-family: var(--mono); }
+
+  .pod-tag {
+    display: inline-block; margin: 3px 3px 0 0; font-family: var(--mono); font-size: 9px;
+    padding: 2px 6px; border-radius: 3px;
+    background: rgba(0,212,255,0.06); color: var(--muted); border: 1px solid var(--border);
+  }
+
+  /* Highlight box */
+  .highlight {
+    background: rgba(0,229,160,0.05); border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 8px; padding: 16px 18px; margin-top: 10px;
+    font-size: 12px; color: #70c9a0; line-height: 1.7;
+  }
+  .highlight strong { color: var(--green); }
+
+  .footer {
+    margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border);
+    font-family: var(--mono); font-size: 9px; color: var(--muted);
+    display: flex; justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="eyebrow">Innovación Automotriz SpA · Julio 2026</div>
+  <h1>Nuestro equipo ya opera en el modelo<br>que la industria está adoptando</h1>
+  <div class="subtitle">Cómo nos comparamos con las tendencias globales en equipos de desarrollo · 2025–2026</div>
+  <div class="sources">
+    <span class="source-tag" style="border-color: rgba(0,212,255,0.4); color: var(--accent);">Wall Street Journal · May 2026</span>
+    <span class="source-tag" style="border-color: rgba(0,229,160,0.4); color: var(--green);">Crunch-IS · May 2026</span>
+    <span class="source-tag" style="border-color: rgba(255,184,0,0.4); color: var(--amber);">Nextdev · Jun 2026</span>
+    <span class="source-tag">Hatchworks AI</span>
+    <span class="source-tag">8allocate</span>
+    <span class="source-tag">JetSoftPro</span>
+    <span class="source-tag">Archyde / Gartner</span>
+    <span class="source-tag">Forbes Tech Council</span>
+    <span class="source-tag">LTM SDLC Radar 2026</span>
+    <span class="source-tag">McKinsey 2025</span>
+    <span class="source-tag">WEF 2026</span>
+    <span class="source-tag" style="border-color: rgba(255,184,0,0.4); color: var(--amber);">onext technology · Nov 2025</span>
+    <span class="source-tag" style="border-color: rgba(255,184,0,0.4); color: var(--amber);">Writer / ReasonWhy · Abr 2026</span>
+    <span class="source-tag">Nucleoo 2026</span>
+  </div>
+</div>
+
+<!-- WSJ Quote -->
+<div class="section-label">Wall Street Journal · Mayo 2026</div>
+<div style="background: var(--surface); border: 1px solid rgba(0,212,255,0.2); border-radius: 8px; padding: 20px 22px; margin-bottom: 10px; position: relative;">
+  <div style="position: absolute; top: 16px; left: 18px; font-size: 48px; color: rgba(0,212,255,0.12); font-family: Georgia, serif; line-height: 1;">"</div>
+  <div style="padding-left: 28px;">
+    <p style="font-size: 14px; color: #c8d8e8; line-height: 1.7; font-style: italic; margin-bottom: 14px;">
+      "Hay ganancias exponenciales cuando tenemos menos personas porque pasas mucho menos tiempo en reuniones y revisiones. Por eso los startups son rápidos — tienen un par de personas hiper-alineadas con muy poco overhead innecesario."
+    </p>
+    <div style="font-family: var(--mono); font-size: 10px; color: var(--muted);">Rob Witoff, Head of Platform · <span style="color: var(--accent);">Coinbase</span> · WSJ "Your Work Team Is Now a Pod" · 18 Mayo 2026</div>
+  </div>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px;">
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;">
+    <div style="font-family: var(--mono); font-size: 22px; font-weight: 600; color: var(--accent); margin-bottom: 5px;">3 personas</div>
+    <div style="font-size: 11px; color: var(--muted);">Es lo que usa Coinbase hoy para proyectos que antes requerían 10–15 personas. Pod AI-native en producción.</div>
+    <div style="font-family: var(--mono); font-size: 9px; color: #2a3a50; margin-top: 4px;">WSJ / Coinbase 2026</div>
+  </div>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;">
+    <div style="font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--green); margin-bottom: 5px; line-height: 1.5;">"El pod es la próxima evolución del scrum team, con herramientas de IA muy poderosas"</div>
+    <div style="font-family: var(--mono); font-size: 9px; color: #2a3a50; margin-top: 4px;">Dan Diasio, AI Leader · Ernst & Young · WSJ 2026</div>
+  </div>
+</div>
+
+<!-- Nextdev -->
+<div class="section-label" style="margin-top: 24px;">Nextdev · Junio 2026</div>
+<div style="background: var(--surface); border: 1px solid rgba(255,184,0,0.2); border-radius: 8px; padding: 20px 22px; margin-bottom: 10px; position: relative;">
+  <div style="position: absolute; top: 16px; left: 18px; font-size: 48px; color: rgba(255,184,0,0.1); font-family: Georgia, serif; line-height: 1;">"</div>
+  <div style="padding-left: 28px;">
+    <p style="font-size: 14px; color: #c8d8e8; line-height: 1.7; font-style: italic; margin-bottom: 14px;">
+      "Cuando tu equipo de producto pasa de 50 a 12 ingenieros, eso no significa que necesitas menos ingenieros en la empresa. Significa que ahora puedes correr tres productos simultáneamente con el mismo headcount total. La ambición de la organización se expande para igualar el nuevo leverage."
+    </p>
+    <div style="font-family: var(--mono); font-size: 10px; color: var(--muted);">Nextdev AI Team · <span style="color: var(--amber);">"AI-First Pods Are Shrinking Teams 25–40%"</span> · 9 Junio 2026</div>
+  </div>
+</div>
+
+<!-- Crunch-IS Case Study -->
+<div class="section-label" style="margin-top: 24px;">Crunch-IS · Caso real · Mayo 2026</div>
+<div style="background: var(--surface); border: 1px solid rgba(0,229,160,0.2); border-radius: 8px; padding: 20px 22px; margin-bottom: 10px; position: relative;">
+  <div style="position: absolute; top: 16px; left: 18px; font-size: 48px; color: rgba(0,229,160,0.1); font-family: Georgia, serif; line-height: 1;">"</div>
+  <div style="padding-left: 28px;">
+    <p style="font-size: 14px; color: #c8d8e8; line-height: 1.7; font-style: italic; margin-bottom: 14px;">
+      "Un Pod de 4 especialistas senior entregó el MVP en 3 meses contra una estimación tradicional de 8 meses. La velocidad no viene de trabajar más rápido — viene de eliminar el overhead de coordinación antes de que aparezca."
+    </p>
+    <div style="font-family: var(--mono); font-size: 10px; color: var(--muted);">Vlad Bezruchko, CTO · <span style="color: var(--green);">Crunch-IS</span> · "The AI Pod Model: Smaller Teams, Faster Delivery" · 15 Mayo 2026</div>
+  </div>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px;">
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;">
+    <div style="font-family: var(--mono); font-size: 22px; font-weight: 600; color: var(--green); margin-bottom: 5px;">8 → 3 meses</div>
+    <div style="font-size: 11px; color: var(--muted);">Un fabricante UK necesitaba 8 meses con equipo tradicional. Un pod de 4 personas lo entregó en 3. Sistema SAP integrado en producción.</div>
+    <div style="font-family: var(--mono); font-size: 9px; color: #2a3a50; margin-top: 4px;">Crunch-IS Case Study 2026</div>
+  </div>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px;">
+    <div style="font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 5px; line-height: 1.4;">"La IA produce el volumen. Los ingenieros son dueños de cada decisión: arquitectura, revisión y responsabilidad de cada línea que llega a producción."</div>
+    <div style="font-family: var(--mono); font-size: 9px; color: #2a3a50; margin-top: 4px;">Crunch-IS · Definición del modelo AI Pod · 2026</div>
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="section-label">Lo que la industria está construyendo</div>
+<div class="stat-strip">
+  <div class="stat">
+    <div class="stat-num">3–5</div>
+    <div class="stat-label">Personas por pod AI-native para reemplazar equipos de 8–12</div>
+    <div class="stat-source">Gartner / Hatchworks AI</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num green">76%</div>
+    <div class="stat-label">De empleados en tech ya adoptó IA en su trabajo diario</div>
+    <div class="stat-source">McKinsey 2025</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num amber">65%</div>
+    <div class="stat-label">De devs espera redefinición total de su rol en 2026</div>
+    <div class="stat-source">WEF 2026</div>
+  </div>
+</div>
+
+<!-- Tendencias -->
+<div class="section-label">Las 5 tendencias que están redefiniendo los equipos</div>
+<div class="trends-grid">
+
+  <div class="trend-card">
+    <div class="trend-n">01 · Estructura</div>
+    <div class="trend-title">Del área funcional al Pod multidisciplinario</div>
+    <div class="trend-body">
+      Los equipos organizados por disciplina (Front, Back, QA, DevOps separados) están siendo reemplazados por pods pequeños de 3–5 personas que cubren el ciclo completo de entrega. Cada pod es dueño de un producto de inicio a fin.
+    </div>
+    <span class="trend-tag">Estructura</span>
+  </div>
+
+  <div class="trend-card green">
+    <div class="trend-n">02 · Roles</div>
+    <div class="trend-title">El dev pasa de implementador a orquestador de IA</div>
+    <div class="trend-body">
+      El cuello de botella ya no es la línea de código — es la intención arquitectónica. Los ingenieros evolucionan a definir contexto, validar outputs de IA y tomar decisiones que la máquina no puede tomar. El valor está en la decisión, no en la ejecución.
+    </div>
+    <span class="trend-tag green">Roles</span>
+  </div>
+
+  <div class="trend-card amber">
+    <div class="trend-n">03 · Tamaño</div>
+    <div class="trend-title">Equipos pequeños, output de equipo grande</div>
+    <div class="trend-body">
+      Un pod de 3 personas con IA activa entrega el output de un equipo tradicional de 8–12. No es menos trabajo — es un modelo donde IA ejecuta y humanos dirigen. HatchWorks midió 94% de ganancia de productividad en sus pods internos.
+    </div>
+    <span class="trend-tag amber">Escala</span>
+  </div>
+
+  <div class="trend-card">
+    <div class="trend-n">04 · QA</div>
+    <div class="trend-title">QA integrado al dev, no como área separada</div>
+    <div class="trend-body">
+      La revisión de calidad al final del sprint desaparece. QA se integra al ciclo desde el inicio. El dev hace 80% desarrollo y 20% QA, con agentes automatizando el testing repetitivo. El rol de QA especializado se convierte en una capacidad transversal.
+    </div>
+    <span class="trend-tag">Calidad</span>
+  </div>
+
+  <div class="trend-card green">
+    <div class="trend-n">05 · Modelo</div>
+    <div class="trend-title">El loop Centauro: humano decide, IA ejecuta</div>
+    <div class="trend-body">
+      El patrón dominante es: Contexto (humano) → Plan (IA) → Confirmar (humano) → Ejecutar (IA) → Validar (humano + IA). Quien domina este loop multiplica su output. Quien solo usa IA como autocomplete se queda en el 20% del potencial.
+    </div>
+    <span class="trend-tag green">Metodología</span>
+  </div>
+
+  <!-- Spacer card vacía para completar grid -->
+  <div style="background: rgba(0,229,160,0.03); border: 1px dashed rgba(0,229,160,0.15); border-radius: 8px; padding: 16px; display: flex; align-items: center; justify-content: center;">
+    <div style="text-align: center;">
+      <div style="font-size: 28px; margin-bottom: 8px;">✓</div>
+      <div style="font-family: var(--mono); font-size: 10px; color: var(--green);">Nuestro equipo cumple<br>las 5 tendencias</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Match table -->
+<div class="section-label" style="margin-top:28px">Cómo nuestro equipo se compara con el modelo AI-native</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Lo que la industria define como AI-native</th>
+        <th>Nuestro equipo hoy</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pod de 3–5 personas multidisciplinario</td>
+        <td>3 devs full-stack cubriendo Front, Back, QA y Deploy</td>
+        <td class="check">✓ Cumple</td>
+      </tr>
+      <tr>
+        <td>Cada dev cubre todo el stack</td>
+        <td>Los 3 trabajan Front, Back, DB según prioridad</td>
+        <td class="check">✓ Cumple</td>
+      </tr>
+      <tr>
+        <td>QA integrado al dev (80/20), no área separada</td>
+        <td>Cada dev hace QA; Guilherme con mayor especialización</td>
+        <td class="check">✓ Cumple</td>
+      </tr>
+      <tr>
+        <td>Ownership de producto completo por pod</td>
+        <td>El equipo es dueño de SPB/Mi Autoparts y DWS/Mi Taller</td>
+        <td class="check">✓ Cumple</td>
+      </tr>
+      <tr>
+        <td>IA activa en el ciclo de desarrollo diario</td>
+        <td>Claude Code + GPT en uso activo, 71K líneas aceptadas en julio</td>
+        <td class="check">✓ Cumple</td>
+      </tr>
+      <tr>
+        <td>Líder técnico como orquestador, no solo coder</td>
+        <td>Javier Velásquez en arquitectura, decisiones y coordinación</td>
+        <td class="check">✓ Cumple</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="highlight">
+  <strong>Conclusión:</strong> Lo que Gartner, McKinsey y HatchWorks describen como "el equipo de desarrollo del futuro" es lo que nosotros ya somos hoy. Equipos grandes, separados por disciplina, sin IA integrada — son el modelo del pasado. El trabajo ahora es profundizar el uso de IA para multiplicar lo que ya hacemos bien.
+</div>
+
+<!-- Pod roles -->
+<div class="section-label" style="margin-top:32px">Nuestro Pod · Roles y responsabilidades</div>
+<div class="pod-grid">
+
+  <div class="pod-card javier">
+    <div class="pod-name">Javier Velásquez</div>
+    <div class="pod-title">Agentic Tech Lead</div>
+
+    <div class="pod-section">Arquitectura & Decisiones</div>
+    <div class="pod-item">Define la arquitectura de SPB y DWS</div>
+    <div class="pod-item">Toma decisiones técnicas de alto impacto</div>
+    <div class="pod-item">Diseña los patrones que el equipo sigue</div>
+
+    <div class="pod-section">Orquestación de IA</div>
+    <div class="pod-item">Define qué tareas delegar a IA vs resolver manualmente</div>
+    <div class="pod-item">Diseña los CLAUDE.md y contexto para cada repo</div>
+    <div class="pod-item">Valida que el output de IA siga la arquitectura</div>
+
+    <div class="pod-section">Liderazgo</div>
+    <div class="pod-item">Mentoring técnico al equipo</div>
+    <div class="pod-item">Coordinación de prioridades entre SPB y DWS</div>
+    <div class="pod-item">Puente entre producto y desarrollo</div>
+
+    <div style="margin-top: 12px;">
+      <span class="pod-tag">.NET / Azure</span>
+      <span class="pod-tag">Arquitectura</span>
+      <span class="pod-tag">GPT</span>
+      <span class="pod-tag">Liderazgo</span>
+    </div>
+  </div>
+
+  <div class="pod-card henrique">
+    <div class="pod-name">Henrique Schraiber</div>
+    <div class="pod-title">Agentic Engineer</div>
+
+    <div class="pod-section">Desarrollo</div>
+    <div class="pod-item">Implementación de features en SPB y DWS</div>
+    <div class="pod-item">Frontend + Backend según prioridad</div>
+    <div class="pod-item">Integraciones con APIs externas (ML, etc.)</div>
+
+    <div class="pod-section">IA Activa</div>
+    <div class="pod-item">Uso de Claude Code para generación de código</div>
+    <div class="pod-item">Orquesta agentes para tareas repetitivas</div>
+    <div class="pod-item">Revisa y valida outputs antes de commitear</div>
+
+    <div class="pod-section">Calidad</div>
+    <div class="pod-item">Testing de sus propios desarrollos (80/20)</div>
+    <div class="pod-item">Code review con soporte de IA</div>
+    <div class="pod-item">Deploy y seguimiento en producción</div>
+
+    <div style="margin-top: 12px;">
+      <span class="pod-tag">Full-stack</span>
+      <span class="pod-tag">Claude Code</span>
+      <span class="pod-tag">Integraciones</span>
+    </div>
+  </div>
+
+  <div class="pod-card guilherme">
+    <div class="pod-name">Guilherme Reis</div>
+    <div class="pod-title">Agentic QA Engineer</div>
+
+    <div class="pod-section">Calidad Transversal</div>
+    <div class="pod-item">Estrategia de testing para SPB y DWS</div>
+    <div class="pod-item">Define estándares de calidad del pod</div>
+    <div class="pod-item">Casos exploratorios que IA no puede anticipar</div>
+
+    <div class="pod-section">Automatización IA</div>
+    <div class="pod-item">Automatización de tests con Claude Code / Playwright</div>
+    <div class="pod-item">Pipelines de QA con IA en el ciclo CI/CD</div>
+    <div class="pod-item">Valida outputs de IA antes de llegar a producción</div>
+
+    <div class="pod-section">Desarrollo</div>
+    <div class="pod-item">Features y fixes cuando la prioridad lo requiere</div>
+    <div class="pod-item">80% QA · 20% Dev según carga del equipo</div>
+    <div class="pod-item">Soporte cruzado entre SPB y DWS</div>
+
+    <div style="margin-top: 12px;">
+      <span class="pod-tag">QA AI Lead</span>
+      <span class="pod-tag">Playwright</span>
+      <span class="pod-tag">Claude Code</span>
+      <span class="pod-tag">Appium</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="highlight" style="margin-top: 16px;">
+  <strong>Sistemas bajo ownership del pod:</strong> Spareparts Business · Mi Autoparts · Digital Workshop · Mi Taller Digital — todos sobre la misma arquitectura .NET / Azure, lo que permite al equipo moverse fluidamente entre productos según prioridad sin perder contexto técnico.
+</div>
+
+<!-- Sección adopción -->
+<div class="section-label" style="margin-top: 36px;">Por qué los equipos no adoptan IA — y cómo superarlo</div>
+
+<!-- Stat destacado -->
+<div style="background: rgba(255,184,0,0.05); border: 1px solid rgba(255,184,0,0.2); border-radius: 8px; padding: 18px 20px; margin-bottom: 14px;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+    <div style="text-align: center;">
+      <div style="font-family: var(--mono); font-size: 28px; font-weight: 600; color: var(--amber); margin-bottom: 4px;">78%</div>
+      <div style="font-size: 11px; color: var(--muted);">de empresas tienen baja adopción de IA a pesar de comprar licencias</div>
+      <div style="font-family: var(--mono); font-size: 9px; color: #3a2a00; margin-top: 4px;">onext technology 2025</div>
+    </div>
+    <div style="text-align: center; border-left: 1px solid var(--border); border-right: 1px solid var(--border); padding: 0 16px;">
+      <div style="font-family: var(--mono); font-size: 28px; font-weight: 600; color: var(--amber); margin-bottom: 4px;">29%</div>
+      <div style="font-size: 11px; color: var(--muted);">de empleados admiten sabotear activamente la estrategia de IA de su empresa</div>
+      <div style="font-family: var(--mono); font-size: 9px; color: #3a2a00; margin-top: 4px;">Writer / Workplace Intelligence · ReasonWhy 2026</div>
+    </div>
+    <div style="text-align: center;">
+      <div style="font-family: var(--mono); font-size: 28px; font-weight: 600; color: var(--amber); margin-bottom: 4px;">48%</div>
+      <div style="font-size: 11px; color: var(--muted);">de ejecutivos reconocen que la adopción de IA ha sido una "gran decepción"</div>
+      <div style="font-family: var(--mono); font-size: 9px; color: #3a2a00; margin-top: 4px;">Writer / Workplace Intelligence · ReasonWhy 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- Cita onext -->
+<div style="background: var(--surface); border: 1px solid rgba(255,184,0,0.15); border-radius: 8px; padding: 18px 20px; margin-bottom: 10px; position: relative;">
+  <div style="position: absolute; top: 14px; left: 16px; font-size: 40px; color: rgba(255,184,0,0.1); font-family: Georgia, serif; line-height: 1;">"</div>
+  <div style="padding-left: 24px;">
+    <p style="font-size: 13px; color: #c8d8e8; line-height: 1.7; font-style: italic; margin-bottom: 10px;">
+      "Le pregunté a mi equipo y la respuesta que obtuve es que la IA era como un Google más grande y más rápido al que preguntarle dudas. Me di cuenta que no habíamos entendido nada."
+    </p>
+    <div style="font-family: var(--mono); font-size: 10px; color: var(--muted);">COO de Consultora · <span style="color: var(--amber);">onext technology</span> · "Por qué tu equipo no adopta las herramientas IA que compraste" · Nov 2025</div>
+  </div>
+</div>
+
+<!-- Las 5 barreras reales -->
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 14px;">
+  <div style="padding: 12px 16px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">
+    Las 5 barreras reales de adopción · Nucleoo / onext / Writer 2025–2026
+  </div>
+  <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+    <tbody>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 14px; width: 30%; color: var(--amber); font-weight: 600;">Falta de comprensión</td>
+        <td style="padding: 10px 14px; color: #8a9eb5;">La IA se percibe como compleja o solo para grandes empresas. El equipo la usa como "Google avanzado", no como delegación de tareas completas.</td>
+      </tr>
+      <tr style="background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 14px; color: var(--amber); font-weight: 600;">Miedo al cambio</td>
+        <td style="padding: 10px 14px; color: #8a9eb5;">Los devs temen que la IA reemplace su valor profesional. Sin comunicación clara, la resistencia es racional.</td>
+      </tr>
+      <tr style="border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 14px; color: var(--amber); font-weight: 600;">Sin integración al flujo</td>
+        <td style="padding: 10px 14px; color: #8a9eb5;">Distribuir licencias no es implementar IA. Si no cambia el flujo de trabajo diario, la herramienta queda instalada sin usarse. El 78% de empresas está en este punto.</td>
+      </tr>
+      <tr style="background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border);">
+        <td style="padding: 10px 14px; color: var(--amber); font-weight: 600;">Sin métricas visibles</td>
+        <td style="padding: 10px 14px; color: #8a9eb5;">Si no se mide el impacto, no se sabe si funciona. Sin feedback, el dev no tiene incentivo para cambiar su forma de trabajar.</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 14px; color: var(--amber); font-weight: 600;">Sin cultura de compartir</td>
+        <td style="padding: 10px 14px; color: #8a9eb5;">La adopción se propaga por imitación entre peers, no por mandato. Sin un "champion" interno que muestre el flujo real, nadie cambia.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Lo que hacemos diferente -->
+<div style="background: rgba(0,229,160,0.04); border: 1px solid rgba(0,229,160,0.2); border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+  <div style="font-family: var(--mono); font-size: 9px; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">Lo que hacemos diferente en nuestro pod</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px; color: #70c9a0; line-height: 1.6;">
+    <div>✓ Métricas reales de uso (dashboard Anthropic + notebook GitHub)</div>
+    <div>✓ Sprint planning con base de estimación ajustada por IA</div>
+    <div>✓ Líneas aceptadas de Claude Code visibles y medidas mensualmente</div>
+    <div>✓ Meta Sprint como punto intermedio alcanzable, no impuesto</div>
+    <div>✓ Desafío IA como objetivo explícito y consensuado</div>
+    <div>✓ Feedback objetivo por tarea en cada sprint review</div>
+  </div>
+</div>
+
+<!-- Cita framework 30 días -->
+<div style="background: var(--surface); border: 1px solid rgba(0,212,255,0.15); border-radius: 8px; padding: 16px 20px; font-size: 11px; color: #8a9eb5; line-height: 1.7;">
+  <span style="color: var(--accent); font-weight: 600;">onext technology</span> documentó que equipos que llegan a adopción >80% lo logran en 4 semanas siguiendo un framework de integración al flujo — no de formación genérica. El primer paso es siempre el mismo: <strong style="color: var(--text);">demostrar valor en el primer día, no en el primer mes</strong>, con una tarea repetitiva real del equipo resuelta en minutos frente a ellos.
+  <div style="font-family: var(--mono); font-size: 9px; color: #2a3a50; margin-top: 8px;">onext technology · "Por qué tu equipo no adopta las herramientas IA que compraste" · Nov 2025</div>
+</div>
+
+<div class="footer">
+  <span>Innovación Automotriz SpA · Pod de Desarrollo · Julio 2026</span>
+  <span>Fuentes: WSJ, Crunch-IS, Nextdev, onext technology, Nucleoo, Writer/Workplace Intelligence (ReasonWhy), Hatchworks AI, Gartner, McKinsey, WEF · 2025–2026</span>
+</div>
+
+</body>
+</html>
