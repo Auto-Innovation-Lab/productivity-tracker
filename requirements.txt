@@ -4,3 +4,4 @@ matplotlib
 requests
 jupyter
 nbformat
+python-dotenv
